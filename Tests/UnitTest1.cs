@@ -1,11 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
-namespace Tests
+namespace BitFn.CoreUtilities.ProjectTemplate.Tests
 {
-	[TestClass]
+	[TestFixture]
 	public class UnitTest1
 	{
-		[TestMethod]
+		[Test]
 		public void TestMethod1()
 		{
 		}
