@@ -1,5 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
 using NUnit.Framework;
+using Ploeh.AutoFixture.NUnit2;
 
 namespace BitFn.CoreUtilities.ProjectTemplate.Tests
 {
@@ -8,6 +9,11 @@ namespace BitFn.CoreUtilities.ProjectTemplate.Tests
 	{
 		[Test]
 		public void TestMethod1()
+		{
+		}
+
+		[Test, AutoData]
+		public void AutoDataTestMethod1(Guid guid)
 		{
 		}
 	}
