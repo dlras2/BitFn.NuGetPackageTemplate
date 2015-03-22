@@ -4,7 +4,7 @@
 	{
 		public string Echo(string argument)
 		{
-			return string.Format("argument: {0}", argument);
+			return string.Format("{0}: {1}", nameof(argument), argument);
 		}
 	}
 }
