@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("BitFn.CoreUtilities.ProjectTemplate")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Daniel Rasmussen")]
 [assembly: AssemblyProduct("BitFn.CoreUtilities.ProjectTemplate")]
 [assembly: AssemblyCopyright("Copyright © Daniel Rasmussen 2015")]
 [assembly: AssemblyTrademark("")]
