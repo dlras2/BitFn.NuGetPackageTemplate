@@ -3,7 +3,7 @@ $nugetFolder = $PSScriptRoot + "\.nuget"
 $nugetFile = $nugetFolder + "\nuget.exe"
  
 if(!(Test-Path -Path $nugetFile )){
-   New-Item -ItemType Directory -Force -Path $nugetFolder
+   New-Item -ItemType Directory -Force -Path $nugetFolder | Out-Null
    Invoke-WebRequest $source -OutFile $nugetFile
 }
 

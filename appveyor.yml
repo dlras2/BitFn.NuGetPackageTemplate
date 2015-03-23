@@ -3,7 +3,6 @@ version: "{build}"
 os: Visual Studio 2015 CTP 6
 
 init:
-  - echo Using appveyor.yml
   - git config --global core.autocrlf input
 
 install:
@@ -28,9 +27,9 @@ build:
 before_build:
   - ps: .\appveyor.before_build.ps1
 
-cache:
-  # - packages
-  - .nuget
+# cache:
+#   - packages
+#   - .nuget
 
 # deploy:
 #   - provider: NuGet
