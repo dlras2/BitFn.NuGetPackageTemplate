@@ -27,9 +27,9 @@ build:
 before_build:
   - ps: .\appveyor.before_build.ps1
 
-# cache:
-#   - packages
-#   - .nuget
+cache:
+  - packages
+  - .nuget
 
 # deploy:
 #   - provider: NuGet

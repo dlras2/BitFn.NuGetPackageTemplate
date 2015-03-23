@@ -26,9 +26,9 @@ Else
   $env:ASSEMBLY_INFORMATIONAL_VERSION = "0.0.0-" + ($env:APPVEYOR_REPO_BRANCH -replace "[^0-9A-Za-z]", "") + "-" + $env:APPVEYOR_BUILD_NUMBER
 }
 
-Write-Host "  Assembly version" $env:ASSEMBLY_VERSION
-Write-Host "  Assembly file version" $env:ASSEMBLY_FILE_VERSION
-Write-Host "  Assembly informational version" $env:ASSEMBLY_INFORMATIONAL_VERSION
+Write-Host "Assembly version" $env:ASSEMBLY_VERSION
+Write-Host "Assembly file version" $env:ASSEMBLY_FILE_VERSION
+Write-Host "Assembly informational version" $env:ASSEMBLY_INFORMATIONAL_VERSION
 
 # Set release notes for NuGet package
 $env:releaseNotes = $env:APPVEYOR_REPO_COMMIT_MESSAGE
