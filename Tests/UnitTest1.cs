@@ -12,7 +12,7 @@ namespace BitFn.CoreUtilities.ProjectTemplate.Tests
 		{
 		}
 
-		[Test, AutoData]
+		[Test, AutoMoqData]
 		public void AutoDataTestMethod1(Guid guid, Class1 sut)
 		{
 			var expected = "Argument: " + guid;
