@@ -15,7 +15,7 @@ namespace BitFn.CoreUtilities.ProjectTemplate.Tests
 		[Test, AutoData]
 		public void AutoDataTestMethod1(Guid guid, Class1 sut)
 		{
-			var expected = "argument: " + guid;
+			var expected = "Argument: " + guid;
 			var actual = sut.Echo(guid.ToString());
 			Assert.AreEqual(expected, actual);
 		}
