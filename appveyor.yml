@@ -25,8 +25,12 @@ build:
   verbosity: minimal
   publish_nuget: true
 
-# cache:
-#   - packages
+before_build:
+  - ps: .\appveyor.before_build.ps1
+
+cache:
+  # - packages
+  - .nuget
 
 # deploy:
 #   - provider: NuGet
