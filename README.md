@@ -1,0 +1,2 @@
+BitFn.CoreUtilities.ProjectTemplate
+======
