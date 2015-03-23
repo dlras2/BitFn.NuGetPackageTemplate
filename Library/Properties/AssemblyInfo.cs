@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("BitFn.CoreUtilities.ProjectTemplate")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A template project for building class libraries with C# 6, NUnit 2, and NuGet packaging support using the Appveyor build platform.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Daniel Rasmussen")]
 [assembly: AssemblyProduct("BitFn.CoreUtilities.ProjectTemplate")]
