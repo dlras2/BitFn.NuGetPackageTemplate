@@ -1,9 +1,9 @@
 # Regular expression for matching semantic versioning (http://semver.org/)
 $regex = "^v(?<version>(?<major>\d+)\.(?<minor>\d+)\.(?<revision>\d+))(?<prerelease>(?:\-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?)(?<metadata>(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*?)?)$"
 
-If ($env:APPVEYOR_REPO_BRANCH -match $regex)
+If ($env:APPVEYOR_REPO_TAG_NAME -match $regex)
 {
-  # Branch name consists of a 'v' followed by a valid semantic version string
+  # Tag name consists of a 'v' followed by a valid semantic version string
 
   # Treat this as a versioned deploy (possibly a prerelease version)
   $env:DEPLOY_NUGET = $true
