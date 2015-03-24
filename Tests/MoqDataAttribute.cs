@@ -4,9 +4,9 @@ using Ploeh.AutoFixture.NUnit2;
 
 namespace BitFn.CoreUtilities.ProjectTemplate.Tests
 {
-	public class AutoMoqDataAttribute : AutoDataAttribute
+	public class MoqDataAttribute : AutoDataAttribute
 	{
-		public AutoMoqDataAttribute()
+		public MoqDataAttribute()
 			: base(new Fixture().Customize(new AutoMoqCustomization()))
 		{
 		}
