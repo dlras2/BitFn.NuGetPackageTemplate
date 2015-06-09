@@ -27,7 +27,6 @@ build:
   publish_nuget: true
 
 before_build:
-  - set > environment.txt
   - ps: .\appveyor.before_build.ps1
 
 cache:

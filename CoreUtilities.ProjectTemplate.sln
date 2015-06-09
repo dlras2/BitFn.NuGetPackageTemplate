@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Appveyor", "Appveyor", "{16
 	ProjectSection(SolutionItems) = preProject
 		appveyor.before_build.ps1 = appveyor.before_build.ps1
 		appveyor.install.ps1 = appveyor.install.ps1
+		appveyor.write_env.bat = appveyor.write_env.bat
 		appveyor.yml = appveyor.yml
 	EndProjectSection
 EndProject

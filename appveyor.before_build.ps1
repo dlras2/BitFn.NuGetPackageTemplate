@@ -19,5 +19,6 @@ Get-ChildItem $PSScriptRoot -Filter "*.sln" |
     }
 
 # Push pre-build settings artifacts for debugging
+.\appveyor.write_env.bat
 Push-AppveyorArtifact environment.txt
-Get-ChildItem AssemblyInfo.* -Recurse | % { "$_" } | Resolve-Path -Relative | % { Push-AppveyorArtifact $_ }
+Get-ChildItem AssemblyInfo.* -Recurse | % { "$_" } | Resolve-Path -Relative | % { Push-AppveyorArtifact $_ -name $_.TrimStart('.','\') }
