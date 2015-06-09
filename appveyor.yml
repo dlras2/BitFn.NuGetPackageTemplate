@@ -31,25 +31,24 @@ before_build:
   - ps: .\appveyor.before_build.ps1
 
 cache:
-  - packages
-  - .nuget
+  - packages -> **\packages.config
+  - .nuget -> appveyor.*
 
 artifacts:
   - path: environment.txt
   - path: '**\AssemblyInfo.*'
-  - path: '**\*.nupkg'
 
-deploy:
-  - provider: GitHub
-    on:
-      RELEASE: true
-    artifact: /.*\.nupkg/
-    tag: $(RELEASE_TAG)
-    release: $(RELEASE_TITLE)
-    description: $(APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED)
-    prerelease: $(PRERELEASE)
-    auth_token:
-      secure: ORKZkqGuK16Wfn5LmCxSkhfJhys51oJnPy4kCVHy3QYrgz8zUxZWrN78Tk361jJg
+#deploy:
+#  - provider: GitHub
+#    on:
+#      RELEASE: true
+#    artifact: /.*\.nupkg/
+#    tag: $(RELEASE_TAG)
+#    release: $(RELEASE_TITLE)
+#    description: $(APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED)
+#    prerelease: $(PRERELEASE)
+#    auth_token:
+#      secure: ORKZkqGuK16Wfn5LmCxSkhfJhys51oJnPy4kCVHy3QYrgz8zUxZWrN78Tk361jJg
 #  - provider: NuGet
 #    on:
 #      RELEASE: true

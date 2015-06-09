@@ -17,7 +17,7 @@ If (!$env:APPVEYOR_PULL_REQUEST_NUMBER -and ($env:APPVEYOR_REPO_BRANCH -eq "mast
   $env:ASSEMBLY_INFORMATIONAL_VERSION = $matches['version'] + ($matches['prerelease'] -replace "\.", "")
 
   # Set pre-release to true if the prerelease section of the version string exists
-  $env:PRERELEASE = !!($matches['prerelease'])
+  $env:PRERELEASE = !!($matches['prerelease']) -or ($matches['major'] -eq '0')
   $env:RELEASE_TAG = $env:APPVEYOR_REPO_COMMIT_MESSAGE
   $env:RELEASE_TITLE = "Version " + ($env:APPVEYOR_REPO_COMMIT_MESSAGE).substring(1)
 }
