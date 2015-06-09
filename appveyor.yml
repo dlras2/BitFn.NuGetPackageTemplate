@@ -1,12 +1,14 @@
 version: "{build}"
 
-os: Visual Studio 2015 CTP 6
+os: Visual Studio 2015 RC
 
 init:
   - git config --global core.autocrlf input
 
 install:
   - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
+  - set > environment.txt
+  - appveyor PushArtifact environment.txt
   - ps: .\appveyor.install.ps1
 
 assembly_info:
