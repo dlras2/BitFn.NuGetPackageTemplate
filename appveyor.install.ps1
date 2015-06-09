@@ -40,7 +40,7 @@ $env:RELEASE_NOTES = [string]::Format("{0}\n\n[Build log]({1}/project/{2}/{3}/bu
   $env:RELEASE_NOTES, $env:APPVEYOR_URL, $env:APPVEYOR_ACCOUNT_NAME, $env:APPVEYOR_PROJECT_SLUG, $env:APPVEYOR_BUILD_VERSION).Trim()
 
 $env:RELEASE_NOTES_GITHUB = $env:RELEASE_NOTES
-$env:RELEASE_NOTES_NUGET = $env:RELEASE_NOTES -replace "\n", "`n"
+$env:RELEASE_NOTES_NUGET = $env:RELEASE_NOTES -replace "\\n", "`n"
 
 Write-Host "Assembly version" $env:ASSEMBLY_VERSION
 Write-Host "Assembly file version" $env:ASSEMBLY_FILE_VERSION
