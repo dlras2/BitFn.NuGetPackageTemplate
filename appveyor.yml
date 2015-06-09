@@ -10,7 +10,7 @@ init:
 install:
   - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   - ps: .\appveyor.install.ps1
-  - .\appveyor.publish_environment.bat
+  - set > environment.txt
 
 assembly_info:
   patch: true
@@ -33,13 +33,19 @@ before_build:
 cache:
   - packages
   - .nuget
-  
+
+artifacts:
+  - path: environment.txt
+  - path: '**\AssemblyInfo.*'
+  - path: '**\*.nupkg'
+
 deploy:
   - provider: GitHub
     on:
       RELEASE: true
     artifact: /.*\.nupkg/
-    tag: $(APPVEYOR_REPO_COMMIT_MESSAGE)
+    tag: $(RELEASE_TAG)
+    release: $(RELEASE_TITLE)
     description: $(APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED)
     prerelease: $(PRERELEASE)
     auth_token:
