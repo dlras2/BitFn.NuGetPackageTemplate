@@ -36,7 +36,7 @@ Else
 }
 
 # Append build url to release notes
-$env:RELEASE_NOTES = [string]::Format("{0}\n\n[Build log]({1}/project/{2}/{3}/build/{4})",
+$env:RELEASE_NOTES = [string]::Format("{0}`r`n`r`n[Build log]({1}/project/{2}/{3}/build/{4})",
   $env:RELEASE_NOTES, $env:APPVEYOR_URL, $env:APPVEYOR_ACCOUNT_NAME, $env:APPVEYOR_PROJECT_SLUG, $env:APPVEYOR_BUILD_VERSION).Trim()
 
 Write-Host "Assembly version" $env:ASSEMBLY_VERSION
