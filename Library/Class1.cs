@@ -13,7 +13,7 @@ namespace BitFn.CoreUtilities.ProjectTemplate
 
 		public string Echo(string argument)
 		{
-			return string.Format("{0}: {1}", nameof(argument).Humanize(), argument);
+			return $"{nameof(argument).Humanize()}: {argument}";
 		}
 	}
 }

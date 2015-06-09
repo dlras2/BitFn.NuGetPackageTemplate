@@ -194,3 +194,6 @@ ModelManifest.xml
 
 # Dropbox Artifacts
 .dropbox.attr
+
+# Visual Studio files
+.vs/
