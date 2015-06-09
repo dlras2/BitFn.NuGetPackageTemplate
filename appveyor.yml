@@ -10,7 +10,6 @@ init:
 install:
   - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   - ps: .\appveyor.install.ps1
-  - set > environment.txt
 
 assembly_info:
   patch: true
@@ -28,15 +27,12 @@ build:
   publish_nuget: true
 
 before_build:
+  - set > environment.txt
   - ps: .\appveyor.before_build.ps1
 
 cache:
   - packages -> **\packages.config
   - .nuget -> appveyor.*
-
-artifacts:
-  - path: environment.txt
-  - path: '**\AssemblyInfo.*'
 
 #deploy:
 #  - provider: GitHub

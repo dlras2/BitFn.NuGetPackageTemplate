@@ -17,3 +17,7 @@ Get-ChildItem $PSScriptRoot -Filter "*.sln" |
       Write-Host "Restoring NuGet packages for $_..."
       & "$nugetFile" restore "$_"
     }
+
+# Push pre-build settings artifacts for debugging
+Push-AppveyorArtifact environment.txt
+Get-ChildItem AssemblyInfo.* -Recurse | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
