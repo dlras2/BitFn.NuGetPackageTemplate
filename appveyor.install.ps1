@@ -20,6 +20,7 @@ If (!$env:APPVEYOR_PULL_REQUEST_NUMBER -and ($env:APPVEYOR_REPO_BRANCH -eq "mast
   $env:PRERELEASE = !!($matches['prerelease']) -or ($matches['major'] -eq '0')
   $env:RELEASE_TAG = $env:APPVEYOR_REPO_COMMIT_MESSAGE
   $env:RELEASE_TITLE = "Version " + ($env:APPVEYOR_REPO_COMMIT_MESSAGE).substring(1)
+  $env:RELEASE_NOTES = $env:APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED
 }
 Else
 {
@@ -29,11 +30,15 @@ Else
   $env:ASSEMBLY_VERSION = "0.0.0"
   $env:ASSEMBLY_FILE_VERSION = "0.0.0." + $env:APPVEYOR_BUILD_NUMBER
   $env:ASSEMBLY_INFORMATIONAL_VERSION = "0.0.0-" + ($env:APPVEYOR_REPO_BRANCH -replace "[^0-9A-Za-z]", "") + "-" + $env:APPVEYOR_BUILD_NUMBER
+
+  # Set release notes for NuGet package
+  $env:RELEASE_NOTES = $env:APPVEYOR_REPO_NAME + " " + ($env:APPVEYOR_REPO_COMMIT).substring(0,8)
 }
+
+# Append build url to release notes
+$env:RELEASE_NOTES = [string]::Format("{0}\n\n[Build log]({1}/project/{2}/{3}/build/{4})",
+  $env:RELEASE_NOTES, $env:APPVEYOR_URL, $env:APPVEYOR_ACCOUNT_NAME, $env:APPVEYOR_PROJECT_SLUG, $env:APPVEYOR_BUILD_VERSION).Trim()
 
 Write-Host "Assembly version" $env:ASSEMBLY_VERSION
 Write-Host "Assembly file version" $env:ASSEMBLY_FILE_VERSION
 Write-Host "Assembly informational version" $env:ASSEMBLY_INFORMATIONAL_VERSION
-
-# Set release notes for NuGet package
-$env:releaseNotes = $env:APPVEYOR_REPO_COMMIT_MESSAGE

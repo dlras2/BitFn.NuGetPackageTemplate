@@ -40,7 +40,7 @@ cache:
 #    artifact: /.*\.nupkg/
 #    tag: $(RELEASE_TAG)
 #    release: $(RELEASE_TITLE)
-#    description: $(APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED)
+#    description: $(RELEASE_NOTES)
 #    prerelease: $(PRERELEASE)
 #    auth_token:
 #      secure: ORKZkqGuK16Wfn5LmCxSkhfJhys51oJnPy4kCVHy3QYrgz8zUxZWrN78Tk361jJg

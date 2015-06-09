@@ -137,6 +137,9 @@ packages/*
 # NuGet Binaries
 .nuget/*
 
+# NuGet Package Output
+*.nupkg
+
 # Enable "build/" folder in the NuGet Packages folder since
 # NuGet packages use it for MSBuild targets.
 # This line needs to be after the ignore of the build folder
