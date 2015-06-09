@@ -1,6 +1,17 @@
 # Regular expression for matching semantic versioning (http://semver.org/)
 $regex = "^v(?<version>(?<major>\d+)\.(?<minor>\d+)\.(?<revision>\d+))(?<prerelease>(?:\-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?)(?<metadata>(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?)$"
 
+# Create link to build log
+$build_url = [string]::Format("{0}/project/{1}/{2}/build/{3}",
+  $env:APPVEYOR_URL, $env:APPVEYOR_ACCOUNT_NAME, $env:APPVEYOR_PROJECT_SLUG, $env:APPVEYOR_BUILD_VERSION)
+
+# Commit url
+$commit_url = ""
+If ($env:APPVEYOR_REPO_PROVIDER -eq "gitHub")
+{
+  $commit_url = [string]::Format("https://github/{0}/commit/{1}", $env:APPVEYOR_REPO_NAME, $env:APPVEYOR_REPO_COMMIT)
+}
+
 If (!$env:APPVEYOR_PULL_REQUEST_NUMBER -and ($env:APPVEYOR_REPO_BRANCH -eq "master") -and ($env:APPVEYOR_REPO_COMMIT_MESSAGE -match $regex))
 {
   # Commit message consists of a 'v' followed by a valid semantic version string (e.g. "v1.23.4-beta+exp.sha.5114f85")
@@ -15,12 +26,14 @@ If (!$env:APPVEYOR_PULL_REQUEST_NUMBER -and ($env:APPVEYOR_REPO_BRANCH -eq "mast
   $env:ASSEMBLY_FILE_VERSION = $matches['version'] + "." + $env:APPVEYOR_BUILD_NUMBER
   # NuGet doesn't allow any build metadata (+) or dots in prerelease tags (-)
   $env:ASSEMBLY_INFORMATIONAL_VERSION = $matches['version'] + ($matches['prerelease'] -replace "\.", "")
+  # TODO: Allow newlines in NuGet release notes
+  $env:RELEASE_NOTES = $env:APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED
 
-  # Set pre-release to true if the prerelease section of the version string exists
+  # Set up GitHub release properties
   $env:PRERELEASE = !!($matches['prerelease']) -or ($matches['major'] -eq '0')
   $env:RELEASE_TAG = $env:APPVEYOR_REPO_COMMIT_MESSAGE
   $env:RELEASE_TITLE = "Version " + ($env:APPVEYOR_REPO_COMMIT_MESSAGE).substring(1)
-  $env:RELEASE_NOTES = $env:APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED
+  $env:RELEASE_NOTES_GITHUB = [string]::Format("{0}\n\n[Build log]({1})", $env:APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED, $build_url)
 }
 Else
 {
@@ -32,15 +45,8 @@ Else
   $env:ASSEMBLY_INFORMATIONAL_VERSION = "0.0.0-" + ($env:APPVEYOR_REPO_BRANCH -replace "[^0-9A-Za-z]", "") + "-" + $env:APPVEYOR_BUILD_NUMBER
 
   # Set release notes for NuGet package
-  $env:RELEASE_NOTES = $env:APPVEYOR_REPO_NAME + " " + ($env:APPVEYOR_REPO_COMMIT).substring(0,8)
+  $env:RELEASE_NOTES = $commit_url
 }
-
-# Append build url to release notes
-$env:RELEASE_NOTES = [string]::Format("{0}\n\n[Build log]({1}/project/{2}/{3}/build/{4})",
-  $env:RELEASE_NOTES, $env:APPVEYOR_URL, $env:APPVEYOR_ACCOUNT_NAME, $env:APPVEYOR_PROJECT_SLUG, $env:APPVEYOR_BUILD_VERSION).Trim()
-
-$env:RELEASE_NOTES_GITHUB = $env:RELEASE_NOTES
-$env:RELEASE_NOTES_NUGET = $env:RELEASE_NOTES -replace "\\n", "`n"
 
 Write-Host "Assembly version" $env:ASSEMBLY_VERSION
 Write-Host "Assembly file version" $env:ASSEMBLY_FILE_VERSION
