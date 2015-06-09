@@ -20,4 +20,4 @@ Get-ChildItem $PSScriptRoot -Filter "*.sln" |
 
 # Push pre-build settings artifacts for debugging
 Push-AppveyorArtifact environment.txt
-Get-ChildItem AssemblyInfo.* -Recurse | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+Get-ChildItem AssemblyInfo.* -Recurse | % { "$_" } | Resolve-Path -Relative | % { Push-AppveyorArtifact $_ }
