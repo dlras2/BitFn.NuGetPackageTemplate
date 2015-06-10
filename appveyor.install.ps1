@@ -53,11 +53,12 @@ Else
 # Append build log link to release notes
 $env:RELEASE_NOTES = [string]::Format("{0}\n\n[Build #{1}]({2})", $env:RELEASE_NOTES, $env:APPVEYOR_BUILD_NUMBER, $build_url)
 
-# Patch library .nuspec file
-$file = Get-ChildItem .\Library\*.nuspec
-$xml = [xml](Get-Content $file)
-$xml.SelectNodes("//releaseNotes") | %  {$_."#text" = $env:RELEASE_NOTES.Replace("\n", "`r`n") }
-$xml.Save($file)
+# Patch all .nuspec files
+Get-ChildItem *.nuspec -Recurse | % {
+  $xml = [xml](Get-Content $_)
+  $xml.SelectNodes("//releaseNotes") | % {$_.InnerText = $env:RELEASE_NOTES.Replace("\n", "`r`n") }
+  $xml.Save($_)
+}
 
 Write-Host "Assembly version" $env:ASSEMBLY_VERSION
 Write-Host "Assembly file version" $env:ASSEMBLY_FILE_VERSION
