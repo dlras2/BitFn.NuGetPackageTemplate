@@ -24,10 +24,8 @@ If (!$env:APPVEYOR_PULL_REQUEST_NUMBER -and ($env:APPVEYOR_REPO_BRANCH -eq "mast
   $env:ASSEMBLY_VERSION = $matches['major'] + ".0.0"
   # File version includes NuGet release number plus build number
   $env:ASSEMBLY_FILE_VERSION = $matches['version'] + "." + $env:APPVEYOR_BUILD_NUMBER
-  # NuGet doesn't allow any build metadata (+) or dots in prerelease tags (-)
+  # NuGet doesn't allow dots in prerelease tags (-) or any build metadata (+)
   $env:ASSEMBLY_INFORMATIONAL_VERSION = $matches['version'] + ($matches['prerelease'] -replace "\.", "")
-  # TODO: Allow newlines in NuGet release notes
-  $env:RELEASE_NOTES = $env:APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED
 
   # Set up GitHub release properties
   $env:PRERELEASE = !!($matches['prerelease']) -or ($matches['major'] -eq '0')
@@ -42,12 +40,15 @@ Else
   # Do not assign a release number or deploy to NuGet
   $env:DEPLOY_NUGET = $false
 
+  # Set assembly versions to "version-less" zero-versions
   $env:ASSEMBLY_VERSION = "0.0.0"
   $env:ASSEMBLY_FILE_VERSION = "0.0.0." + $env:APPVEYOR_BUILD_NUMBER
+  # NuGet doesn't allow dots in prerelease tags (-) or any build metadata (+)
   $env:ASSEMBLY_INFORMATIONAL_VERSION = "0.0.0-" + ($env:APPVEYOR_REPO_BRANCH -replace "[^0-9A-Za-z]", "") + "-" + $env:APPVEYOR_BUILD_NUMBER
 
   # Set release notes
-  $env:RELEASE_NOTES = [string]::Format("{0}\n\n{1}", $env:APPVEYOR_REPO_COMMIT_MESSAGE, $commit_url)
+  $env:RELEASE_NOTES = [string]::Format("{0} [@{1}]({2})",
+    $env:APPVEYOR_REPO_COMMIT_MESSAGE, ($env:APPVEYOR_REPO_COMMIT).substring(0,7), $commit_url)
 }
 
 # Append build log link to release notes
@@ -56,7 +57,7 @@ $env:RELEASE_NOTES = [string]::Format("{0}\n\n[Build #{1}]({2})", $env:RELEASE_N
 # Patch all .nuspec files
 Get-ChildItem *.nuspec -Recurse | % {
   $xml = [xml](Get-Content $_)
-  $xml.SelectNodes("//releaseNotes") | % {$_.InnerText = $env:RELEASE_NOTES.Replace("\n", "`r`n") }
+  $xml.SelectNodes("//releaseNotes") | % {$_.InnerText = ($env:RELEASE_NOTES).Replace("\n", "`r`n") }
   $xml.Save($_)
 }
 

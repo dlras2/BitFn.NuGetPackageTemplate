@@ -41,7 +41,7 @@ deploy:
     artifact: /.*\.nupkg/
     tag: $(RELEASE_TAG)
     release: $(RELEASE_TITLE)
-    description: $(RELEASE_NOTES_GITHUB)
+    description: $(RELEASE_NOTES)
     prerelease: $(PRERELEASE)
     auth_token:
       secure: ORKZkqGuK16Wfn5LmCxSkhfJhys51oJnPy4kCVHy3QYrgz8zUxZWrN78Tk361jJg
