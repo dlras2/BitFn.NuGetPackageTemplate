@@ -33,7 +33,9 @@ If (!$env:APPVEYOR_PULL_REQUEST_NUMBER -and ($env:APPVEYOR_REPO_BRANCH -eq "mast
   $env:PRERELEASE = !!($matches['prerelease']) -or ($matches['major'] -eq '0')
   $env:RELEASE_TAG = $env:APPVEYOR_REPO_COMMIT_MESSAGE
   $env:RELEASE_TITLE = "Version " + ($env:APPVEYOR_REPO_COMMIT_MESSAGE).substring(1)
-  $env:RELEASE_NOTES_GITHUB = [string]::Format("{0}\n\n[Build log]({1})", $env:APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED, $build_url)
+
+  # Set release notes
+  $env:RELEASE_NOTES = $env:APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED
 }
 Else
 {
@@ -44,9 +46,18 @@ Else
   $env:ASSEMBLY_FILE_VERSION = "0.0.0." + $env:APPVEYOR_BUILD_NUMBER
   $env:ASSEMBLY_INFORMATIONAL_VERSION = "0.0.0-" + ($env:APPVEYOR_REPO_BRANCH -replace "[^0-9A-Za-z]", "") + "-" + $env:APPVEYOR_BUILD_NUMBER
 
-  # Set release notes for NuGet package
-  $env:RELEASE_NOTES = $commit_url
+  # Set release notes
+  $env:RELEASE_NOTES = [string]::Format("{0}\n\n{1}", $env:APPVEYOR_REPO_COMMIT_MESSAGE, $commit_url)
 }
+
+# Append build log link to release notes
+$env:RELEASE_NOTES = [string]::Format("{0}\n\n[Build #{1}]({2})", $env:RELEASE_NOTES, $env:APPVEYOR_BUILD_NUMBER, $build_url)
+
+# Patch library .nuspec file
+$file = Get-ChildItem .\Library\*.nuspec
+$xml = [xml](Get-Content $file)
+$xml.SelectNodes("//releaseNotes") | %  {$_."#text" = $env:RELEASE_NOTES.Replace("\n", "`r`n") }
+$xml.Save($file)
 
 Write-Host "Assembly version" $env:ASSEMBLY_VERSION
 Write-Host "Assembly file version" $env:ASSEMBLY_FILE_VERSION

@@ -19,10 +19,6 @@ Get-ChildItem $PSScriptRoot -Filter "*.sln" |
     }
 
 # Push pre-build settings artifacts for debugging
-If ($env:DEBUG_APPVEYOR)
-{
-  Write-Host "Pushing pre-build settings artifacts..."
-  .\appveyor.write_env.bat
-  Push-AppveyorArtifact environment.txt
-  Get-ChildItem AssemblyInfo.* -Recurse | % { "$_" } | Resolve-Path -Relative | % { Push-AppveyorArtifact $_ -FileName $_.TrimStart('.','\') }
-}
+Write-Host "Pushing pre-build settings artifacts..."
+Push-AppveyorArtifact environment.txt
+Get-ChildItem AssemblyInfo.* -Recurse | % { "$_" } | Resolve-Path -Relative | % { Push-AppveyorArtifact $_ -FileName $_.TrimStart('.','\') }

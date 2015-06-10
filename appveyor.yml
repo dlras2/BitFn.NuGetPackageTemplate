@@ -18,9 +18,6 @@ assembly_info:
   assembly_file_version: "$(ASSEMBLY_FILE_VERSION)"
   assembly_informational_version: "$(ASSEMBLY_INFORMATIONAL_VERSION)"
 
-environment:
-  DEBUG_APPVEYOR: true
-
 platform: Any CPU
 
 configuration: Release
@@ -30,6 +27,7 @@ build:
   publish_nuget: true
 
 before_build:
+  - set > environment.txt
   - ps: .\appveyor.before_build.ps1
 
 cache:
