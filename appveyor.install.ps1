@@ -1,5 +1,5 @@
 # Regular expression for matching semantic versioning (http://semver.org/)
-$regex = "^v(?<version>(?<major>\d+)\.(?<minor>\d+)\.(?<revision>\d+))(?<prerelease>(?:\-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?)(?<metadata>(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?)($|(?=\s))"
+$regex = "^v(?<semver>(?<version>(?<major>\d+)\.(?<minor>\d+)\.(?<revision>\d+))(?<prerelease>(?:\-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?)(?<metadata>(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?))($|(?=\s))"
 
 # Create link to build log
 $build_url = [string]::Format("{0}/project/{1}/{2}/build/{3}",
@@ -25,7 +25,7 @@ If (!$env:APPVEYOR_PULL_REQUEST_NUMBER -and ($env:APPVEYOR_REPO_BRANCH -eq "mast
   # File version includes release number plus build number
   $env:ASSEMBLY_FILE_VERSION = $matches['version'] + "." + $env:APPVEYOR_BUILD_NUMBER
   # Assembly info version is equal to full semantic version plus build number metadata
-  $env:ASSEMBLY_INFORMATIONAL_VERSION = $matches['version'] + $matches['prerelease'] + $matches['metadata']
+  $env:ASSEMBLY_INFORMATIONAL_VERSION = $matches['semver']
   $delimiter = If (!!($matches['metadata'])) {"."} Else {"+"}
   $env:ASSEMBLY_INFORMATIONAL_VERSION = $env:ASSEMBLY_INFORMATIONAL_VERSION + $delimiter + $env:APPVEYOR_BUILD_NUMBER
   # NuGet doesn't allow dots in prerelease tags (-) or any build metadata (+)
@@ -33,8 +33,8 @@ If (!$env:APPVEYOR_PULL_REQUEST_NUMBER -and ($env:APPVEYOR_REPO_BRANCH -eq "mast
 
   # Set up GitHub release properties
   $env:PRERELEASE = (!!($matches['prerelease']) -or ($matches['major'] -eq '0'))
-  $env:RELEASE_TAG = $env:APPVEYOR_REPO_COMMIT_MESSAGE
-  $env:RELEASE_TITLE = "Version " + $env:ASSEMBLY_INFORMATIONAL_VERSION
+  $env:RELEASE_TAG = "v" + $matches['semver']
+  $env:RELEASE_TITLE = "Version " + $matches['semver']
 
   # Set release notes
   $env:RELEASE_NOTES = $env:APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED
