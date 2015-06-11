@@ -2,7 +2,7 @@
 using Ploeh.AutoFixture.AutoMoq;
 using Ploeh.AutoFixture.NUnit2;
 
-namespace BitFn.CoreUtilities.ProjectTemplate.Tests
+namespace BitFn.NuGetPackageTemplate.Tests
 {
 	public class MoqDataAttribute : AutoDataAttribute
 	{

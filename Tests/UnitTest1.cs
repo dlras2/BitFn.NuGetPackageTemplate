@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace BitFn.CoreUtilities.ProjectTemplate.Tests
+namespace BitFn.NuGetPackageTemplate.Tests
 {
 	[TestFixture]
 	public class UnitTest1

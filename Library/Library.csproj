@@ -7,8 +7,8 @@
     <ProjectGuid>{2B2FCF95-D2DD-46CC-B152-A13FE6C30525}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BitFn.CoreUtilities.ProjectTemplate</RootNamespace>
-    <AssemblyName>BitFn.CoreUtilities.ProjectTemplate</AssemblyName>
+    <RootNamespace>BitFn.NuGetPackageTemplate</RootNamespace>
+    <AssemblyName>BitFn.NuGetPackageTemplate</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -49,7 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BitFn.CoreUtilities.ProjectTemplate.nuspec" />
+    <None Include="BitFn.NuGetPackageTemplate.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

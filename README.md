@@ -1,4 +1,4 @@
-BitFn.CoreUtilities.ProjectTemplate [![Build status](https://ci.appveyor.com/api/projects/status/pbuj59fnv3i1onqj/branch/master?svg=true)](https://ci.appveyor.com/project/dlras2/coreutilities-projecttemplate/branch/master)
+BitFn.NuGetPackageTemplate [![Build status](https://ci.appveyor.com/api/projects/status/pbuj59fnv3i1onqj/branch/master?svg=true)](https://ci.appveyor.com/project/dlras2/coreutilities-projecttemplate/branch/master)
 ======
 A template project for building class libraries with Visual Studio 2015, C# 6, NUnit 2, AutoFixtures/AutoMoq, and NuGet packaging using the Appveyor build platform.
 

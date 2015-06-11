@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace BitFn.CoreUtilities.ProjectTemplate.Tests
+namespace BitFn.NuGetPackageTemplate.Tests
 {
 	[AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 	public class MoqTestCaseAttribute : MoqDataAttribute

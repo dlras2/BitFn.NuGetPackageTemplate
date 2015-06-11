@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("BitFn.CoreUtilities.ProjectTemplate")]
+[assembly: AssemblyTitle("BitFn.NuGetPackageTemplate")]
 [assembly: AssemblyDescription("A template project for building class libraries with Visual Studio 2015, C# 6, NUnit 2, AutoFixtures/AutoMoq, and NuGet packaging using the Appveyor build platform.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Daniel Rasmussen")]
-[assembly: AssemblyProduct("BitFn.CoreUtilities.ProjectTemplate")]
+[assembly: AssemblyProduct("BitFn.NuGetPackageTemplate")]
 [assembly: AssemblyCopyright("Copyright © Daniel Rasmussen 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

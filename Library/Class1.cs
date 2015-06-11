@@ -1,6 +1,6 @@
 ﻿using Humanizer;
 
-namespace BitFn.CoreUtilities.ProjectTemplate
+namespace BitFn.NuGetPackageTemplate
 {
 	/// <summary>
 	///     A class this library wants to expose.

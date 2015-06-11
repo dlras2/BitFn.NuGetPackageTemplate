@@ -1,4 +1,4 @@
-﻿namespace BitFn.CoreUtilities.ProjectTemplate
+﻿namespace BitFn.NuGetPackageTemplate
 {
 	/// <summary>
 	///     An interface for testing dependancy injection.
