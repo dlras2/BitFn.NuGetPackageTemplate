@@ -9,6 +9,7 @@ A template project for building class libraries with Visual Studio 2015, C# 6, N
 - ~~NuGet packaging~~
 - ~~AutoMoq~~
 - Code Contracts ([pending VS2015 support](https://social.msdn.microsoft.com/Forums/en-US/03a762c2-18ba-4e0e-871c-4dfcfbc934c2/does-visual-studio-2015-preview-support-code-contracts?forum=codecontracts))
+- Setup Wizard
 
 #### Release Notes:
 - 0.2.0 - 0.2.19 Appveyor refactor.
