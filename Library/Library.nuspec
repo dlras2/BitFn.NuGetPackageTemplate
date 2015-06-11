@@ -7,8 +7,8 @@
 		<title>$title$</title>
 		<authors>$author$</authors>
 		<owners>$author$</owners>
-		<licenseUrl>https://github.com/BitFn/CoreUtilities.ProjectTemplate/blob/master/LICENSE.md</licenseUrl>
-		<projectUrl>https://github.com/BitFn/CoreUtilities.ProjectTemplate</projectUrl>
+		<licenseUrl>https://github.com/BitFn/NuGetPackageTemplate/blob/master/LICENSE.md</licenseUrl>
+		<projectUrl>https://github.com/BitFn/NuGetPackageTemplate</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>$description$</description>
 		<releaseNotes></releaseNotes>
