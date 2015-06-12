@@ -17,6 +17,6 @@ Rename-Item -path "$old_name.sln" -newname "$new_name.sln"
 # Replace global changes
 Get-ChildItem . -Include *.cs, *.*proj, *.config, *.nuspec -Recurse | % {
   (Get-Content $_.PSPath) |
-  % { $_ -replace "\b"+$old_name+"\b", $new_name -replace "\b"+$old_author+"\b", $new_author } |
+  % { $_ -replace $old_name, $new_name -replace $old_author, $new_author } |
   Write-Output | Out-File $_.PSPath -encoding utf8
 }
