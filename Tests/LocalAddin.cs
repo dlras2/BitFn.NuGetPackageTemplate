@@ -1,4 +1,4 @@
-using NUnit.Core.Extensibility;
+﻿using NUnit.Core.Extensibility;
 
 namespace BitFn.NuGetPackageTemplate.Tests
 {
