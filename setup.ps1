@@ -14,9 +14,15 @@ $new_author = read-host "Author/Company Name"
 $OutputEncoding = [System.Text.Encoding]::UTF8
 # Rename solution
 Rename-Item -path "$old_name.sln" -newname "$new_name.sln"
-# Replace global changes
-Get-ChildItem . -Include *.cs, *.*proj, *.config, *.nuspec -Recurse | % {
+# Replace project and author names
+Get-ChildItem . -Include *.cs, *.*proj, *.config, *.nuspec, *.md -Recurse | % {
   (Get-Content $_.PSPath) |
   % { $_ -replace $old_name, $new_name -replace $old_author, $new_author } |
+  Write-Output | Out-File $_.PSPath -encoding utf8
+}
+# Replace assembly GUIDs with new GUIDs
+Get-ChildItem . -Include AssemblyInfo.cs -Recurse | % {
+  (Get-Content $_.PSPath) |
+  % { $_ -replace "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", [guid]::NewGuid() } |
   Write-Output | Out-File $_.PSPath -encoding utf8
 }

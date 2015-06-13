@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("BitFn.NuGetPackageTemplate.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Daniel Rasmussen")]
 [assembly: AssemblyProduct("BitFn.NuGetPackageTemplate.Tests")]
 [assembly: AssemblyCopyright("Copyright © Daniel Rasmussen 2015")]
 [assembly: AssemblyTrademark("")]
