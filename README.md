@@ -2,6 +2,8 @@ BitFn.NuGetPackageTemplate [![Build status](https://ci.appveyor.com/api/projects
 ======
 A template project for building class libraries with Visual Studio 2015, C# 6, NUnit 2, AutoFixtures/AutoMoq, and NuGet packaging using the Appveyor build platform.
 
+To start a new NuGet library project, download this project as a zip file, then run the `setup.ps1` script.
+
 #### TODO:
 - ~~NUnit 2~~
 - ~~AutoFixtures~~

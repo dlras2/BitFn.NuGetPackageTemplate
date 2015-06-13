@@ -16,7 +16,7 @@ $OutputEncoding = [System.Text.Encoding]::UTF8
 Rename-Item -path "$old_name.sln" -newname "$new_name.sln"
 # Replace README
 Remove-Item README.md
-Rename-Item README.md.setup README.md
+Rename-Item README.setup.md README.md
 # Replace project and author names
 Get-ChildItem . -Include *.cs, *.*proj, *.config, *.nuspec, *.md -Recurse | % {
   (Get-Content $_.PSPath) |
