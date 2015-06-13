@@ -14,6 +14,9 @@ $new_author = read-host "Author/Company Name"
 $OutputEncoding = [System.Text.Encoding]::UTF8
 # Rename solution
 Rename-Item -path "$old_name.sln" -newname "$new_name.sln"
+# Replace README
+Remove-Item README.md
+Rename-Item README.md.setup README.md
 # Replace project and author names
 Get-ChildItem . -Include *.cs, *.*proj, *.config, *.nuspec, *.md -Recurse | % {
   (Get-Content $_.PSPath) |
@@ -26,3 +29,5 @@ Get-ChildItem . -Include AssemblyInfo.cs -Recurse | % {
   % { $_ -replace "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", [guid]::NewGuid() } |
   Write-Output | Out-File $_.PSPath -encoding utf8
 }
+# Clean up script
+Remove-Item $MyInvocation.InvocationName
