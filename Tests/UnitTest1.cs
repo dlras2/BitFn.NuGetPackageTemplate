@@ -28,5 +28,13 @@ namespace BitFn.NuGetPackageTemplate.Tests
 			var actual = sut.Echo(s);
 			Assert.AreEqual(expected, actual);
 		}
+
+		[Test, MoqData, ExpectedException(typeof(ArgumentNullException))]
+		public void ContractsTestCaseMethod(Class1 sut)
+		{
+			var s = null as string;
+			// ReSharper disable once ExpressionIsAlwaysNull
+			sut.EchoNotNull(s);
+		}
 	}
 }

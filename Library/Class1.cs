@@ -1,4 +1,6 @@
-﻿using Humanizer;
+﻿using System;
+using System.Diagnostics.Contracts;
+using Humanizer;
 
 namespace BitFn.NuGetPackageTemplate
 {
@@ -21,6 +23,18 @@ namespace BitFn.NuGetPackageTemplate
 		/// <returns>The argument string, preceded by its argument name.</returns>
 		public string Echo(string argument)
 		{
+			return $"{nameof(argument).Humanize()}: {argument}";
+		}
+
+		/// <summary>
+		///     A method echoing its arguments if it's not null.
+		/// </summary>
+		/// <param name="argument">The non-null string to echo.</param>
+		/// <returns>The argument string, preceded by its argument name.</returns>
+		public string EchoNotNull(string argument)
+		{
+			Contract.Requires<ArgumentNullException>(argument != null);
+
 			return $"{nameof(argument).Humanize()}: {argument}";
 		}
 	}
