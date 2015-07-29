@@ -10,7 +10,7 @@ To start a new NuGet library project, download this project as a zip file, then 
 - ~~Visual Studio 2015/C# 6~~
 - ~~NuGet packaging~~
 - ~~AutoMoq~~
-- Code Contracts ([pending VS2015 support](https://social.msdn.microsoft.com/Forums/en-US/03a762c2-18ba-4e0e-871c-4dfcfbc934c2/does-visual-studio-2015-preview-support-code-contracts?forum=codecontracts))
+- Code Contracts ([pending AppVeyor support](https://github.com/appveyor/ci/issues/346))
 - ~~Setup Wizard~~
 
 #### Release Notes:
