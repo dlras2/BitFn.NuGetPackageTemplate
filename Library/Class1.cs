@@ -11,6 +11,10 @@ namespace BitFn.NuGetPackageTemplate
 	{
 		private readonly IInterface1 _interface1;
 
+		/// <summary>
+		///     A dummy-class for testing project setup.
+		/// </summary>
+		/// <param name="interface1"></param>
 		public Class1(IInterface1 interface1)
 		{
 			_interface1 = interface1;
