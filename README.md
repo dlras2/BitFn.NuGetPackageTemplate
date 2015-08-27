@@ -10,8 +10,9 @@ To start a new NuGet library project, download this project as a zip file, then 
 - ~~Visual Studio 2015/C# 6~~
 - ~~NuGet packaging~~
 - ~~AutoMoq~~
-- Code Contracts ([pending AppVeyor support](https://github.com/appveyor/ci/issues/346))
+- ~~Code Contracts~~
 - ~~Setup Wizard~~
+- ~~Documentation/Symbols Packaging~~
 
 #### Release Notes:
 - 0.2.21 Fixed Appveyor/NUnit error.
