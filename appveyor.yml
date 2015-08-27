@@ -25,6 +25,7 @@ configuration: Release
 build:
   verbosity: minimal
   publish_nuget: true
+  publish_nuget_symbols: true
 
 before_build:
   - set > environment.txt
@@ -49,7 +50,6 @@ deploy:
 #!    on:
 #!      RELEASE: true
 #!    artifact: /.*\.nupkg/
-#!    skip_symbols: false
 #!    api_key:
 #!      secure: 9Wg2LEAupBmopvEh2VuikmrE32UwhsTWRsbXwhBnYspDELPopHrV3GjnCkj+WuWT
 
